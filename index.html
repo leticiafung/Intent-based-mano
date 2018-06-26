@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Intent</title>
+    <link rel="stylesheet" href="styles/indexstyle.css" />
+</head>
+<body>
+<header>
+   <p>自动化编排<span>--安全意图输入</span></p>
+
+</header>
+<!--一个tag输入 一个tag 修改 一个tag状态查看-->
+<div class="in">
+    <div class="input">
+        <nav>
+            <ul id="nav">
+                <li id="sfc" class="active"><a href="#" >新建sfc</a></li>
+                <li id="arrage"><a href="#">修改功能</a></li>
+            </ul>
+        </nav>
+        <div class="step1">
+            <ul>
+                <li>安全设备类型</li>
+            </ul>
+            <div class="sizeC">
+                <label for="type1">小型</label>
+                <input  id="type1" type="radio" name="size" value="s" checked />
+                <label for="type2">中型</label>
+                <input id="type2" type="radio" name="size" value="m" />
+                <label for="type3">大型</label>
+                <input id="type3" type="radio" name="size" value="l" />
+            </div>
+            <hr />
+            <div>
+                <ul>
+                    <li>安全功能选择</li>
+                </ul>
+                <select name="type" class="sizeC">
+                    <option value="REJECT" selected="selected">拒绝</option>
+                    <option value="ACCEPT">允许</option>
+                    <option value="alert">监控</option>
+                </select>
+            </div>
+            <button id="addVNF">下一步</button>
+        </div>
+        <div class="step2">
+            <div class="attack">
+                <span class="intentType">安全类型</span>
+                <select name="attackType">
+                    <option selected="selected" value="none">攻击类型</option>
+                    <option value="syn">syn攻击</option>
+                    <option value="ping">NMAP Ping攻击</option>
+                    <option value="tcpscan">TCP Scan</option>
+                    <option value="xmasscan"> Xmas Scan</option>
+                </select>
+                <span style="color: red;font-weight: bold">*</span>
+                <span style="color: red;font-weight: bold;visibility: hidden" class="alerterr">类型不能为空！！</span>
+            </div>
+            <div class="service">
+                <span class="intentType">安全类型</span>
+                <select name="serviceType">
+                    <option selected="selected" value="none"> 服务类型</option>
+                    <option value="web">Web服务</option>
+                    <option value="ftp">ftp</option>
+                    <option value="dns">DNS</option>
+                    <option value="ssh">SSH</option>
+                </select>
+                <span style="color: red;font-weight: bold;">*</span>
+                <span style="color: red;font-weight: bold;visibility: hidden;" class="alerterr">类型不能为空！！</span>
+            </div>
+            <div id="normal">
+                <p>执行时间</p>
+                <div class="between">
+                    <label for="fromt">从</label>
+                    <input id="fromt" type="time" value="00:00"/>
+                    <label for="tot">到</label>
+                    <input id="tot" type="time" value="23:59"/>
+
+                <label for="weekStart">  &nbsp;从周</label>
+                <input id="weekStart" type="number" value="1" max="7" min="1"/>
+                <label for="weekEnd">到 周</label>
+                <input id="weekEnd" type="number" value="7" max="7" min="1"/>
+                </div>
+                <div>
+                    <label for="speed">最大速率:</label>
+                    <input id="speed" type="number" value="100"  min="1"/>
+                    <span>/秒</span>
+                </div>
+            </div>
+            <hr/>
+            <div id="detail">
+                <p>ip范围</p>
+                <div class="between" id="sourceIP">
+                    <label for="fromIp">源&nbsp;&nbsp;&nbsp;IP:</label>
+                    <input id="fromIp" type="number" value="" min="0" max="255"/>
+                    <span>.</span>
+                    <input id="fromIp1" type="number" value="" min="0" max="255"/>
+                    <span>.</span>
+                    <input id="fromIp2" type="number" value="" min="0" max="255"/>
+                    <span>.</span>
+                    <input id="fromIp3" type="number" value="" min="0" max="255"/>
+                    <span>/</span>
+                    <input id="maskf" type="number" value ='0' min="0" max="32"/>
+                    <!--<span>&nbsp;端口:</span>-->
+                    <!--<input id="sport" type="number" value ='' min="0" />-->
+                </div>
+                <div class="dest" >
+                    <label for="toIp">目的IP:</label>
+                    <input id="toIp" type="number" value="" min="0" max="255"/>
+                    <span>.</span>
+                    <input id="toIp1" type="number" value="" min="0" max="255"/>
+                    <span>.</span>
+                    <input id="toIp2" type="number" value="" min="0" max="255"/>
+                    <span>.</span>
+                    <input id="toIp3" type="number" value="" min="0" max="255"/>
+                    <span>/</span>
+                    <input id="maskt" type="number" value ='0' min="0" max="32"/>
+                    <!--<span>&nbsp;端口:</span>-->
+                    <!--<input id="dport" type="number" value = '' min="0" />-->
+                </div>
+
+            </div>
+            <div class="buttons">
+                <button id="back1">增加虚拟功能</button>
+                <button id="appendbtn">添加需求</button>
+                <!--<button id="appendVNF">新建虚拟功能</button>-->
+                <button id="submitbtn">下一步</button>
+            </div>
+        </div>
+
+
+    <!--</div>-->
+    <!--<div class="showIntent">-->
+        <div id="sfcset" class="step3">
+            <div class="between">
+                <ul  class="title">
+                    <li>顺序约束</li>
+                </ul>
+                <span>虚拟化功能</span>
+                <input id="former" type="number" value = ''  min="-1" max="-1"/>
+                <span>></span>
+                <input id="later" type="number" value = ''  min="-1" max="-1"/>
+                <button id="addConstrain">继续添加约束</button>
+            </div>
+            <hr/>
+            <div>
+                <ul class="title">
+                    <li>QoS要求</li>
+                </ul>
+                <div class="between">
+                    <span>带宽</span>
+                    <input id="bandwidth" type="number" value = '0' min="0" />
+                    <span>M</span>
+                </div>
+                <span>延迟</span>
+                <input id="delay" type="number" value ='0' min="0" max="32"/>
+                <span>ms</span>
+            </div>
+
+            <div class="buttons">
+                <button id="back2" >上一步</button>
+                <button id="send">生成安全服务功能链</button>
+            </div>
+        </div>
+
+    <!--</div>-->
+</div>
+
+<!--<div class="output">-->
+
+</div>
+<script type="text/javascript" src="scripts/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="scripts/index.js"></script>
+</body>
+</html>
